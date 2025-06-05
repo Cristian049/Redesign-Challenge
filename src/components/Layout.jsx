@@ -11,7 +11,12 @@ export default function Layout({
   selectedId,
   onSelectSkip,
 }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth > 768;
+    }
+    return false;
+  });
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== "undefined") {
       return window.innerWidth <= 768;
@@ -24,7 +29,7 @@ export default function Layout({
     function handleResize() {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
-      setIsSidebarOpen(!mobile); // open sidebar on desktop, close on mobile
+      setIsSidebarOpen((prev) => (mobile ? false : true)); // open sidebar on desktop, close on mobile
     }
 
     window.addEventListener("resize", handleResize);
