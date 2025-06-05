@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  width: 10rem;
+}

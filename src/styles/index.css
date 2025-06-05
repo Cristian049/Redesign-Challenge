@@ -1,0 +1,159 @@
+@import "./themes.css";
+
+/* ==========================
+   GLOBAL RESET & BASICS
+   Reset margin, padding, box-sizing for all elements,
+   plus scrollbar hiding and transition settings.
+========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* ==========================
+   HTML & BODY
+   Base font, height, color, and layout settings for the whole page
+========================== */
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  color: var(--color-text-dark);
+  position: relative;
+}
+
+/* ==========================
+   LIST ELEMENTS
+   Remove default list styles and spacing
+========================== */
+ul {
+  list-style: none;
+}
+
+li {
+  padding: 0;
+  margin: 0;
+}
+
+/* ==========================
+   MAIN LAYOUT STRUCTURE
+   Container, sidebar, main content, and header styling
+========================== */
+.container {
+  display: flex;
+  background-color: var(--color-grey-50);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--color-grey-50);
+  color: var(--color-grey-700);
+}
+
+.sidebar {
+  height: 100vh;
+  background-color: var(--color-grey-0);
+  color: var(--color-grey-700);
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 2.4rem;
+  border-right: 1px solid var(--color-grey-100);
+  transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  flex-shrink: 0;
+}
+
+.header {
+  height: 4rem;
+  background-color: var(--color-grey-0);
+  color: var(--color-grey-700);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid var(--color-grey-100);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================
+   GRID FOR "SKIPS"
+   Grid layout for skip elements container
+========================== */
+.skips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.4rem;
+}
+
+/* ==========================
+   RESPONSIVE STYLES
+   Adjust layout for small and medium screen sizes
+========================== */
+
+/* On very small screens (max-width: 500px) */
+@media (max-width: 500px) {
+  .skip-container {
+    flex-direction: column;
+  }
+  .skips-grid {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+}
+
+/* On small to medium screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .content {
+    padding: 2rem;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 100vh;
+    padding: 2rem 1.4rem;
+    border-right: 1px solid var(--color-grey-100);
+    width: 220px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .menuBtn {
+    display: block;
+  }
+
+  .skip-container-info {
+    flex-direction: column;
+  }
+
+  .skip-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .button-group {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .button-group button {
+    width: 100%;
+  }
+}
